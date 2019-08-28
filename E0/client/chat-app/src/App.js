@@ -4,7 +4,7 @@ import MessageForm from "./components/MessageForm";
 import MessageBubble from './components/MessageBubble';
 import "./App.css";
 
-const endpoint = "http://localhost:5000";
+const endpoint = "http://0.0.0.0:5000";
 const socket = io(endpoint, { transports: ["polling"] });
 
 const App = () => {
