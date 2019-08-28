@@ -23,15 +23,14 @@ def messageReceived(methods=['GET', 'POST']):
 @io.on('new connection')
 def connect():
     print('someone connected')
-    client_id = str(datetime.now())
-    clients[request.sid] = client_id
-    io.emit('new-id', {'data': client_id})
+    clients[request.sid] = request.sid
+    io.emit('new-id', {'data': clients[request.sid]}, room=request.sid)
 
 @io.on('new-message')
 def handle_my_custom_event(json, methods=['GET', 'POST']):
     new_message = {**json, 'timestamp': str(datetime.now()), 'sent_by': clients[request.sid]}
     print('received my event: ' + str(new_message))
-    io.emit('new-message', new_message, callback=messageReceived, broadcast=True)
+    io.emit('new-message', new_message, callback=messageReceived)
 
 
 if __name__ == '__main__':

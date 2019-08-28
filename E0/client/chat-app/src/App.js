@@ -42,7 +42,7 @@ const App = () => {
       <p>{messages.length} messages have been emitted</p>
       <div>
         {messages.map(message => (
-          <MessageBubble primary={message.id === id} key={message.timestamp}>{message.text}</MessageBubble>
+          <MessageBubble primary={message.sent_by !== id} key={message.timestamp}>{message.text}</MessageBubble>
         ))}
       </div>
       <MessageForm onSubmit={onSubmit} />

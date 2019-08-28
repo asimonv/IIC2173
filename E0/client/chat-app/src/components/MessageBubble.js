@@ -24,8 +24,8 @@ const BubbleText = styled.p`
   padding: 0.25em 1em;
 `;
 
-const MessageBubble = ({ children }) => (
-  <BubbleContainer>
+const MessageBubble = ({ children, primary }) => (
+  <BubbleContainer primary={primary}>
     <BubbleText>{children}</BubbleText>
   </BubbleContainer>
 );
