@@ -1,7 +1,7 @@
 from flask import Flask, request
 from flask_socketio import SocketIO
 from flask_cors import CORS
-from uuid import uuid1
+from uuid import uuid4
 from datetime import datetime
 
 app = Flask(__name__)
@@ -24,7 +24,7 @@ def messageReceived(methods=['GET', 'POST']):
 @io.on('new connection')
 def connect():
     print('someone connected')
-    client_id = str(uuid1())
+    client_id = str(uuid4())
     clients[request.sid] = client_id
     io.emit('new-id', {'data': client_id})
 
