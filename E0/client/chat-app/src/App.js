@@ -6,8 +6,8 @@ import MessageForm from "./components/MessageForm";
 import MessageBubble from './components/MessageBubble';
 import "./App.css";
 
-//const endpoint = "http://ec2-18-222-124-71.us-east-2.compute.amazonaws.com:5000";
-const endpoint = "http://localhost:5000";
+const endpoint = "http://ec2-18-222-124-71.us-east-2.compute.amazonaws.com:5000";
+//const endpoint = "http://localhost:5000";
 const socket = io(endpoint, { transports: ["polling"] });
 
 const App = () => {
