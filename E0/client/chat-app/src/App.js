@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
+import axios from 'axios';
+
 import MessageForm from "./components/MessageForm";
 import MessageBubble from './components/MessageBubble';
 import "./App.css";
 
-const endpoint = "http://ec2-18-222-124-71.us-east-2.compute.amazonaws.com:5000";
+//const endpoint = "http://ec2-18-222-124-71.us-east-2.compute.amazonaws.com:5000";
+const endpoint = "http://localhost:5000";
 const socket = io(endpoint, { transports: ["polling"] });
 
 const App = () => {
@@ -12,6 +15,15 @@ const App = () => {
   const [id, setId] = useState(null);
 
   useEffect(() => {
+
+    const fetchData = async () => {
+      const url = `http://api.giphy.com/v1/gifs/search?q=simpsons&api_key=dc6zaTOxFJmzC`;
+      const result = await axios.get(url);
+      console.log(result);
+    };
+
+    fetchData();
+
     socket.emit("new connection");
     socket.on("new-id", payload => {
       setId(payload.data);
